@@ -2,7 +2,7 @@
 import { Box, TextField } from '@mui/material'
 import React from 'react'
 import { useState, useEffect } from 'react'
-
+import Suggest from '@/lib/Suggestion'
 function MySide() {
   const [formData, setFormData] = useState({
     event: '',
@@ -57,10 +57,12 @@ function MySide() {
   }
 
   return (
-    <div className='flex flex-col justify-center items-center p-4 w-full'>
+    <div className='flex flex-col justify-center items-center p-4 w-full relative'>
       <TextField label="Event" name='event' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} value={formData.event} />
       <TextField label="Full Name" name='full_name' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} />
+      <Suggest whatFind='full_name' data={formData.full_name} />
       <TextField label="Address" name='address' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} />
+      <Suggest whatFind='address' data={formData.address} />
       <TextField label="Additional note" name='additional_note' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} />
       <TextField label="Amount" name='amount' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} />
       <button className='bg-blue-500 text-white p-2 rounded w-1/2' onClick={handleSubmit}>Submit</button>
