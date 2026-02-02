@@ -1,5 +1,4 @@
 import React from 'react'
-import  { Container } from '@mui/material'
 function Footer() {
   return (
     <div className="flex flex-col items-center bg-gray-200 py-4 mt-8">

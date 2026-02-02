@@ -45,6 +45,7 @@ function OtherSide() {
             const response = await fetch('/api/other-side', {
                 method: 'POST',
                 headers: {
+                    'x-api-key': process.env.NEXT_PUBLIC_API_KEY,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
@@ -56,16 +57,14 @@ function OtherSide() {
     }
 
     return (
-        <Box className='w-1/2' >
-            <div className='flex flex-col justify-center items-center p-4 h-[800px]'>
-                <TextField label="Event" name='event' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} value={formData.event} />
-                <TextField label="Full Name" name='full_name' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} />
-                <TextField label="Address" name='address' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} />
-                <TextField label="Additional note" name='additional_note' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} />
-                <TextField label="Amount" name='amount' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} />
-                <button className='bg-blue-500 text-white p-2 rounded w-1/2' onClick={handleSubmit}>Submit</button>
-            </div>
-        </Box>
+        <div className='flex flex-col justify-center items-center p-4 w-full'>
+            <TextField label="Event" name='event' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} value={formData.event} />
+            <TextField label="Full Name" name='full_name' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} />
+            <TextField label="Address" name='address' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} />
+            <TextField label="Additional note" name='additional_note' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} />
+            <TextField label="Amount" name='amount' variant="standard" sx={{ marginBottom: '1rem', width: '70%' }} onChange={handleChange} />
+            <button className='bg-blue-500 text-white p-2 rounded w-1/2' onClick={handleSubmit}>Submit</button>
+        </div>
     )
 }
 

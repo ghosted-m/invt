@@ -9,10 +9,9 @@ export async function POST(request) {
     }
     try {
         const body = await request.json();
-        const { event, full_name, address, additional_note, amount } = body;
+        const { full_name, address, additional_note, amount } = body;
 
-        const docRef = await addDoc(collection(db, 'test', 'user_data', 'other_side'), {
-            event,
+        const docRef = await addDoc(collection(db, 'test', 'my_side', 'entries'), {
             full_name,
             address,
             additional_note,

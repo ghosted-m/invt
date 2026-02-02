@@ -180,7 +180,7 @@ export default function GridToolbar({ selectedSide }) {
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    const collectionName = selectedSide === 'other_side' ? 'other_side' : 'my_side';
+    const collectionName = selectedSide === 'my_side' ? 'my_side' : 'other_side';
     const q = query(collection(db, 'test', 'user_data', collectionName));
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -209,7 +209,7 @@ export default function GridToolbar({ selectedSide }) {
 
 
   return (
-    <div className='px-16 max-h-[800px] m-auto'>
+    <div className='px-16 max-h-[760px] m-auto w-full overflow-y-auto'>
       <DataGrid
         rows={rows}
         columns={columns}

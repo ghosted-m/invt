@@ -1,5 +1,4 @@
 'use client'
-import { Container } from '@mui/material'
 import React, { useEffect } from 'react'
 import MySide from '../MySide'
 import GridToolbar from '../Status'
@@ -19,16 +18,18 @@ function Body() {
   }, [])
 
   return (
-    <div className='flex flex-row w-full justify-between gap-8 mt-8'>
-      <div className='flex flex-col w-1/2'>
-        <div className='flex justify-center mb-4'>
-          <ConditionalRadio value={selectedForm} onChange={handleRadioChange} />
-        </div>
+    <div className='flex flex-col lg:flex-row w-full justify-between gap-8 p-16 mt-8'>
+      <div style={{ boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)' }} className='py-16 flex flex-col items-center justify-center w-full lg:w-1/2'>
+        <ConditionalRadio value={selectedForm} onChange={handleRadioChange} />
         {selectedForm === 'my_side' ? <MySide /> : <OtherSide />}
       </div>
-      <GridToolbar selectedSide={selectedForm} />
+
+      <div style={{ boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)' }} className='py-16 flex justify-center w-full lg:w-1/2'>
+        <GridToolbar selectedSide={selectedForm} />
+      </div>
     </div>
   )
 }
 
 export default Body
+  
