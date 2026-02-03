@@ -2,9 +2,17 @@ import { db } from '@/lib/firebase';
 import { collection, getDocs, query } from 'firebase/firestore';
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(request) {
     try {
-        const q = query(collection(db, 'test', 'user_data', 'my_side'));
+        const { searchParams } = new URL(request.url);
+        const email = searchParams.get('email');
+
+        if (!email) {
+            return NextResponse.json({ error: 'Email parameter is required' }, { status: 400 });
+        }
+
+        const username = email.split('@')[0];
+        const q = query(collection(db, username, 'user_data', 'my_side'));
         const querySnapshot = await getDocs(q);
 
         const data = querySnapshot.docs.map(doc => ({

@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { db } from '../lib/firebase';
 import { collection, onSnapshot, query } from 'firebase/firestore';
+import { useAuth } from '@/context/AuthContext';
 import { styled } from '@mui/material/styles';
 import {
   DataGrid,
@@ -179,9 +180,14 @@ export default function GridToolbar({ selectedSide }) {
   const [rows, setRows] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
+  const { user } = useAuth();
+
   React.useEffect(() => {
+    if (!user) return; // Wait for user to be available
+
+    const username = user.email.split('@')[0];
     const collectionName = selectedSide === 'my_side' ? 'my_side' : 'other_side';
-    const q = query(collection(db, 'test', 'user_data', collectionName));
+    const q = query(collection(db, username, 'user_data', collectionName));
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const data = querySnapshot.docs.map(doc => ({
@@ -196,7 +202,7 @@ export default function GridToolbar({ selectedSide }) {
     });
 
     return () => unsubscribe();
-  }, [selectedSide]);
+  }, [selectedSide, user]);
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 90 },

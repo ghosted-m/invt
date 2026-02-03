@@ -4,7 +4,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { CircularProgress } from '@mui/material';
 
-const publicRoutes = ['/login', '/signup'];
+const publicRoutes = ['/login', '/signup', '/contact'];
 
 export default function ProtectedRoute({ children }) {
     const { user, loading } = useAuth();

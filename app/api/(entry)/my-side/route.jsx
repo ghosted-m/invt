@@ -9,9 +9,15 @@ export async function POST(request) {
     }
     try {
         const body = await request.json();
-        const { event, full_name, address, additional_note, amount } = body;
+        const { event, full_name, address, additional_note, amount, user_email } = body;
 
-        const docRef = await addDoc(collection(db, 'test', 'user_data', 'my_side'), {
+        if (!user_email) {
+            return NextResponse.json({ error: 'User email is required' }, { status: 400 });
+        }
+
+        const username = user_email.split('@')[0];
+
+        const docRef = await addDoc(collection(db, username, 'user_data', 'my_side'), {
             event,
             full_name,
             address,
@@ -19,7 +25,6 @@ export async function POST(request) {
             amount,
             createdAt: new Date(),
         });
-
         return NextResponse.json({ id: docRef.id, message: 'User created successfully' }, { status: 200 });
     } catch (error) {
         return NextResponse.json({ error: 'Error adding document', message: error.message }, { status: 500 });
