@@ -1,5 +1,5 @@
 'use client'
-import { Box, TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import Suggest from '@/lib/Suggestion'
@@ -70,7 +70,6 @@ function MySide() {
             additional_note: '',
             amount: '',
           }));
-          alert("Entry added successfully!");
         }
 
         const result = await response.json()

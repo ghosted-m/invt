@@ -67,7 +67,6 @@ function OtherSide() {
                         additional_note: '',
                         amount: '',
                     }));
-                    alert("Entry added successfully!");
                 }
 
                 const result = await response.json()
