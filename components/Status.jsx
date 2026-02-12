@@ -215,7 +215,7 @@ export default function GridToolbar({ selectedSide }) {
 
 
   return (
-    <div className='md:px-16 px-4 max-h-[700px] m-auto w-full overflow-y-auto'>
+    <div className='px-4 max-h-[700px] m-auto w-full overflow-y-auto'>
       <DataGrid
         rows={rows}
         columns={columns}

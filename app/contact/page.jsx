@@ -2,7 +2,7 @@
 function ContactPage() {
     return (
         <>
-            <div className="flex flex-col items-center justify-center h-[700px]">
+            <div className="flex flex-col items-center justify-center h-[700px] px-8 md:px-32">
                 <div className='flex flex-col items-center justify-center'>
                     <h1>Contact</h1>
                     <p>Email: [amrendrakstar@gmail.com]</p>
